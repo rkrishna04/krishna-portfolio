@@ -5,7 +5,8 @@ export default function TemplateBorder({ className = "" }: { className?: string 
       height="20"
       viewBox="0 0 400 20"
       preserveAspectRatio="none"
-      className={className}
+      className={`h-5 w-full block ${className}`}
+      style={{ maxHeight: "20px" }}
       aria-hidden="true"
     >
       <defs>

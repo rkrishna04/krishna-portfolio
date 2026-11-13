@@ -116,15 +116,24 @@ export default function Experience() {
               ❈ Work Experience ❈
             </h3>
 
-            <div className="relative pl-14 space-y-10">
-              <div className="timeline-line" />
+            <div className="relative pl-8 sm:pl-12 space-y-10">
+              <div
+                className="absolute left-3 top-2 bottom-2 w-0.5"
+                style={{
+                  background: "linear-gradient(180deg, var(--terracotta), var(--gold), var(--indigo))",
+                }}
+              />
 
               {experiences.map((exp, idx) => (
                 <div key={idx} className="relative">
                   {/* Timeline dot */}
                   <div
-                    className="timeline-dot absolute -left-10 top-1.5"
-                    style={{ background: exp.color, borderColor: exp.color }}
+                    className="absolute -left-[27px] sm:-left-[43px] top-6 w-3.5 h-3.5 rounded-full border-2 z-10"
+                    style={{
+                      background: exp.color,
+                      borderColor: "var(--ivory)",
+                      boxShadow: `0 0 0 3px ${exp.color}40`,
+                    }}
                   />
 
                   <div className="glass-card p-6">

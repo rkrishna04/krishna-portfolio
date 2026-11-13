@@ -144,7 +144,7 @@ export default function Hero() {
 
             {/* Stats */}
             <div
-              className="grid grid-cols-4 gap-4 mt-12 pt-8"
+              className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-12 pt-8"
               style={{ borderTop: "1px solid rgba(212,160,23,0.25)" }}
             >
               {stats.map(({ value, label }) => (

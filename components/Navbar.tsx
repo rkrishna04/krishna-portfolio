@@ -53,7 +53,7 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
-        <a href="#namaste" className="flex items-center gap-3 group">
+        <a href="#namaste" className="flex items-center gap-3 group no-underline text-inherit">
           <div
             className="w-9 h-9 flex items-center justify-center rounded-sm"
             style={{
@@ -98,9 +98,9 @@ export default function Navbar() {
 
         {/* Mobile Hamburger */}
         <button
-          className="md:hidden flex flex-col gap-1.5 p-2"
+          className="md:hidden flex flex-col justify-center items-center w-12 h-12 gap-1.5 p-2 rounded-sm"
           onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
+          aria-label="Toggle navigation menu"
         >
           {[0, 1, 2].map((i) => (
             <span
