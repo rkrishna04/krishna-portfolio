@@ -1,280 +1,224 @@
 "use client";
 import { useState } from "react";
 import SectionHeader from "./SectionHeader";
-import MandalaDecor from "./MandalaDecor";
+
+const directChannels = [
+  {
+    icon: "💬",
+    name: "WhatsApp Direct",
+    value: "+91 9106170271",
+    action: "Send Message",
+    href: "https://wa.me/919106170271?text=Hi%20Krishna,%20I%20reviewed%20your%20portfolio",
+    color: "border-[#10B981]/40 hover:border-[#10B981]",
+  },
+  {
+    icon: "✉️",
+    name: "Direct Email",
+    value: "krishnarathwa04@gmail.com",
+    action: "Compose Email",
+    href: "mailto:krishnarathwa04@gmail.com?subject=Project%20Opportunity",
+    color: "border-[#D4AF37]/40 hover:border-[#D4AF37]",
+  },
+  {
+    icon: "💼",
+    name: "LinkedIn Network",
+    value: "in/rathwa-krishna",
+    action: "View Profile",
+    href: "https://www.linkedin.com/in/rathwa-krishna",
+    color: "border-[#3B82F6]/40 hover:border-[#3B82F6]",
+  },
+  {
+    icon: "📞",
+    name: "Direct Phone",
+    value: "+91 9106170271",
+    action: "Call Now",
+    href: "tel:+919106170271",
+    color: "border-[#E05638]/40 hover:border-[#E05638]",
+  },
+];
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
-  const [sent, setSent] = useState(false);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
+  const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Build mailto link
-    const body = `Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`;
-    window.location.href = `mailto:krishnarathwa04@gmail.com?subject=${encodeURIComponent(form.subject)}&body=${encodeURIComponent(body)}`;
-    setSent(true);
+    const mailBody = `Name: ${form.name}\nEmail: ${form.email}\n\nMessage:\n${form.message}`;
+    window.location.href = `mailto:krishnarathwa04@gmail.com?subject=${encodeURIComponent(
+      form.subject || "Portfolio Inquiry"
+    )}&body=${encodeURIComponent(mailBody)}`;
+    setSubmitted(true);
   };
 
   return (
-    <section
-      id="samvad"
-      className="py-24 relative overflow-hidden"
-      style={{ background: "var(--ivory)" }}
-    >
-      {/* Background mandala */}
-      <MandalaDecor
-        size={400}
-        opacity={0.04}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-      />
-
-      <div
-        className="absolute top-0 left-0 right-0 h-0.5"
-        style={{
-          background: "linear-gradient(90deg, transparent, var(--gold), var(--terracotta), var(--gold), transparent)",
-        }}
-      />
-
-      <div className="relative max-w-7xl mx-auto px-6">
+    <section id="samvad" className="py-24 relative bg-[#08070A]">
+      <div className="max-w-7xl mx-auto px-6">
         <SectionHeader
-          label="Samvad — The Dialogue"
-          title="Let's Connect"
-          subtitle="Every great collaboration begins with a conversation. Reach out — I would love to hear about your vision and explore how we can build something meaningful together."
+          label="संवाद • The Dialogue"
+          title="Initiate a Collaboration"
+          subtitle="Whether you have an enterprise data challenge, an AI initiative, or a high-impact engineering role — my door is always open."
         />
 
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
-          {/* Left: Info */}
-          <div>
-            <div
-              className="glass-card p-8 mb-6 relative overflow-hidden"
-            >
-              <div
-                className="absolute top-0 left-0 right-0 h-0.5"
-                style={{
-                  background: "linear-gradient(90deg, var(--terracotta), var(--gold))",
-                }}
-              />
-              <h3
-                className="text-sm tracking-widest uppercase mb-6"
-                style={{ fontFamily: "'Cinzel', serif", color: "var(--deep-brown)" }}
-              >
-                Contact Details
-              </h3>
-
-              <div className="space-y-5">
-                {[
-                  {
-                    icon: "📞",
-                    label: "Phone",
-                    value: "+91 9106170271",
-                    href: "tel:+919106170271",
-                  },
-                  {
-                    icon: "✉️",
-                    label: "Email",
-                    value: "krishnarathwa04@gmail.com",
-                    href: "mailto:krishnarathwa04@gmail.com",
-                  },
-                  {
-                    icon: "💼",
-                    label: "LinkedIn",
-                    value: "linkedin.com/in/rathwa-krishna",
-                    href: "https://www.linkedin.com/in/rathwa-krishna",
-                  },
-                ].map(({ icon, label, value, href }) => (
-                  <a
-                    key={label}
-                    href={href}
-                    target={href.startsWith("http") ? "_blank" : undefined}
-                    rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                    className="flex items-start gap-4 group"
-                  >
-                    <div
-                      className="w-10 h-10 flex items-center justify-center rounded-sm text-lg flex-shrink-0 transition-all duration-300 group-hover:scale-110"
-                      style={{
-                        background: "rgba(196,82,42,0.08)",
-                        border: "1px solid rgba(196,82,42,0.20)",
-                      }}
-                    >
-                      {icon}
-                    </div>
-                    <div>
-                      <p
-                        className="text-xs tracking-widest uppercase mb-0.5"
-                        style={{ fontFamily: "'Cinzel', serif", color: "var(--text-muted)" }}
-                      >
-                        {label}
-                      </p>
-                      <p
-                        className="text-sm font-medium transition-colors duration-300 group-hover:text-terracotta"
-                        style={{ color: "var(--text-secondary)" }}
-                      >
-                        {value}
-                      </p>
-                    </div>
-                  </a>
-                ))}
+        <div className="grid lg:grid-cols-12 gap-10 items-start">
+          
+          {/* Left: Contact Channels & Credentials (5 cols) */}
+          <div className="lg:col-span-5 space-y-6">
+            
+            {/* Status Card */}
+            <div className="heritage-card p-6 flex items-center justify-between">
+              <div>
+                <span className="text-[11px] font-semibold text-[#8E8679] uppercase tracking-wider block mb-1">
+                  Current Availability
+                </span>
+                <span className="font-cinzel text-sm font-bold text-[#F8F6F0]">
+                  Open for Full-Time & Project Roles
+                </span>
+              </div>
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#10B981]/10 border border-[#10B981]/30">
+                <span className="w-2 h-2 rounded-full bg-[#10B981] animate-ping" />
+                <span className="text-xs font-semibold text-[#10B981]">Active</span>
               </div>
             </div>
 
-            {/* Quote */}
-            <div
-              className="glass-card p-6 relative"
-              style={{ borderLeft: "3px solid var(--gold)" }}
-            >
-              <p
-                className="text-sm italic leading-relaxed"
-                style={{
-                  fontFamily: "'Playfair Display', serif",
-                  color: "var(--text-secondary)",
-                }}
-              >
-                &ldquo;In the tradition of karigari, the finest craft emerges from the
-                dialogue between the artisan and the patron — the maker and the dreamer.
-                Let us begin that conversation.&rdquo;
-              </p>
-              <p
-                className="text-xs mt-3 tracking-widest uppercase"
-                style={{ fontFamily: "'Cinzel', serif", color: "var(--gold)" }}
-              >
-                — Krishna Rathwa
-              </p>
+            {/* Direct Channels Grid */}
+            <div className="grid sm:grid-cols-2 gap-3.5">
+              {directChannels.map((c) => (
+                <a
+                  key={c.name}
+                  href={c.href}
+                  target={c.href.startsWith("http") ? "_blank" : undefined}
+                  rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  className={`heritage-card p-5 flex flex-col justify-between group transition-all ${c.color}`}
+                >
+                  <div>
+                    <span className="text-2xl mb-2 block">{c.icon}</span>
+                    <h4 className="font-cinzel text-xs font-bold text-[#F8F6F0]">
+                      {c.name}
+                    </h4>
+                    <p className="text-xs text-[#8E8679] mt-0.5 truncate">
+                      {c.value}
+                    </p>
+                  </div>
+                  <span className="text-[11px] font-semibold text-[#D4AF37] group-hover:text-[#FFF] mt-4 flex items-center gap-1">
+                    <span>{c.action}</span>
+                    <span>↗</span>
+                  </span>
+                </a>
+              ))}
             </div>
 
-            {/* Open to work badge */}
-            <div
-              className="mt-6 inline-flex items-center gap-2 px-4 py-2 rounded-sm"
-              style={{
-                background: "rgba(45,90,39,0.08)",
-                border: "1px solid rgba(45,90,39,0.25)",
-              }}
-            >
-              <div
-                className="w-2 h-2 rounded-full"
-                style={{ background: "var(--forest-green)", animation: "pulse 2s infinite" }}
-              />
-              <span
-                className="text-xs tracking-widest uppercase"
-                style={{ fontFamily: "'Cinzel', serif", color: "var(--forest-green)" }}
-              >
-                Open to Opportunities
+            {/* Cultural Quote Box */}
+            <div className="p-6 rounded-xl bg-gradient-to-br from-[#181523] to-[#100E17] border border-[#D4AF37]/30">
+              <p className="font-playfair italic text-sm text-[#F5D77F]/90 leading-relaxed mb-3">
+                &ldquo;In the ancient tradition of Indian dialogue (संवाद), true progress is achieved 
+                when ideas are shared with clarity, respect, and shared purpose.&rdquo;
+              </p>
+              <span className="font-cinzel text-[11px] font-bold text-[#D4AF37] tracking-widest uppercase">
+                — KRISHNA RATHWA, Vadodara, India
               </span>
             </div>
+
           </div>
 
-          {/* Right: Contact Form */}
-          <div className="glass-card p-8 relative overflow-hidden">
-            <div
-              className="absolute top-0 left-0 right-0 h-0.5"
-              style={{
-                background: "linear-gradient(90deg, var(--indigo), var(--terracotta), var(--gold))",
-              }}
-            />
+          {/* Right: Message Form (7 cols) */}
+          <div className="lg:col-span-7">
+            <div className="heritage-card p-8 sm:p-10 relative overflow-hidden">
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#D4AF37] via-[#E05638] to-[#D4AF37]" />
 
-            {sent ? (
-              <div className="text-center py-12">
-                <div className="text-5xl mb-4">🙏</div>
-                <h3
-                  className="text-lg mb-2"
-                  style={{ fontFamily: "'Cinzel Decorative', serif", color: "var(--deep-brown)" }}
-                >
-                  Dhanyavaad!
-                </h3>
-                <p style={{ color: "var(--text-muted)", fontFamily: "'Playfair Display', serif", fontStyle: "italic" }}>
-                  Your message has been sent. I&apos;ll get back to you soon.
-                </p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <h3
-                  className="text-sm tracking-widest uppercase mb-6"
-                  style={{ fontFamily: "'Cinzel', serif", color: "var(--deep-brown)" }}
-                >
-                  Send a Message
-                </h3>
-
-                <div className="grid sm:grid-cols-2 gap-5">
+              {submitted ? (
+                <div className="py-12 text-center flex flex-col items-center">
+                  <span className="text-5xl mb-4">🙏</span>
+                  <h3 className="font-cinzel text-2xl font-bold text-[#F8F6F0] mb-2">
+                    Dhanyavaad (धन्यवाद)
+                  </h3>
+                  <p className="text-sm text-[#C5BFB0] max-w-md">
+                    Your inquiry has been prepared in your email client. I look forward to conversing with you soon.
+                  </p>
+                  <button
+                    onClick={() => setSubmitted(false)}
+                    className="btn-outline-gold text-xs mt-6"
+                  >
+                    Send Another Message
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <label
-                      className="block text-xs tracking-widest uppercase mb-2"
-                      style={{ fontFamily: "'Cinzel', serif", color: "var(--text-muted)" }}
-                    >
-                      Your Name *
+                    <h3 className="font-cinzel text-xl font-bold text-[#F8F6F0] mb-1">
+                      Send a Direct Message
+                    </h3>
+                    <p className="text-xs text-[#8E8679]">
+                      Fill out this form to connect directly with me via email.
+                    </p>
+                  </div>
+
+                  <div className="grid sm:grid-cols-2 gap-5">
+                    <div>
+                      <label className="block text-xs font-semibold text-[#C5BFB0] uppercase tracking-wider mb-2">
+                        Your Full Name <span className="text-[#E05638]">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        value={form.name}
+                        onChange={(e) => setForm({ ...form, name: e.target.value })}
+                        placeholder="e.g. Arjun Sharma"
+                        className="w-full px-4 py-3 rounded-lg bg-[#14121F] border border-white/10 focus:border-[#D4AF37] text-sm text-[#F8F6F0] placeholder-[#8E8679] outline-none transition-colors"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-semibold text-[#C5BFB0] uppercase tracking-wider mb-2">
+                        Your Email Address <span className="text-[#E05638]">*</span>
+                      </label>
+                      <input
+                        type="email"
+                        required
+                        value={form.email}
+                        onChange={(e) => setForm({ ...form, email: e.target.value })}
+                        placeholder="you@company.com"
+                        className="w-full px-4 py-3 rounded-lg bg-[#14121F] border border-white/10 focus:border-[#D4AF37] text-sm text-[#F8F6F0] placeholder-[#8E8679] outline-none transition-colors"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-semibold text-[#C5BFB0] uppercase tracking-wider mb-2">
+                      Subject / Topic <span className="text-[#E05638]">*</span>
                     </label>
                     <input
-                      name="name"
-                      value={form.name}
-                      onChange={handleChange}
+                      type="text"
                       required
-                      placeholder="e.g. Arjun Sharma"
-                      className="form-input"
+                      value={form.subject}
+                      onChange={(e) => setForm({ ...form, subject: e.target.value })}
+                      placeholder="e.g. Data Analytics / AI Opportunity"
+                      className="w-full px-4 py-3 rounded-lg bg-[#14121F] border border-white/10 focus:border-[#D4AF37] text-sm text-[#F8F6F0] placeholder-[#8E8679] outline-none transition-colors"
                     />
                   </div>
+
                   <div>
-                    <label
-                      className="block text-xs tracking-widest uppercase mb-2"
-                      style={{ fontFamily: "'Cinzel', serif", color: "var(--text-muted)" }}
-                    >
-                      Your Email *
+                    <label className="block text-xs font-semibold text-[#C5BFB0] uppercase tracking-wider mb-2">
+                      Your Message <span className="text-[#E05638]">*</span>
                     </label>
-                    <input
-                      name="email"
-                      type="email"
-                      value={form.email}
-                      onChange={handleChange}
+                    <textarea
                       required
-                      placeholder="you@example.com"
-                      className="form-input"
+                      rows={5}
+                      value={form.message}
+                      onChange={(e) => setForm({ ...form, message: e.target.value })}
+                      placeholder="Describe your project, team, or opportunity..."
+                      className="w-full px-4 py-3 rounded-lg bg-[#14121F] border border-white/10 focus:border-[#D4AF37] text-sm text-[#F8F6F0] placeholder-[#8E8679] outline-none transition-colors resize-none"
                     />
                   </div>
-                </div>
 
-                <div>
-                  <label
-                    className="block text-xs tracking-widest uppercase mb-2"
-                    style={{ fontFamily: "'Cinzel', serif", color: "var(--text-muted)" }}
-                  >
-                    Subject *
-                  </label>
-                  <input
-                    name="subject"
-                    value={form.subject}
-                    onChange={handleChange}
-                    required
-                    placeholder="e.g. Project Collaboration / Hiring"
-                    className="form-input"
-                  />
-                </div>
-
-                <div>
-                  <label
-                    className="block text-xs tracking-widest uppercase mb-2"
-                    style={{ fontFamily: "'Cinzel', serif", color: "var(--text-muted)" }}
-                  >
-                    Message *
-                  </label>
-                  <textarea
-                    name="message"
-                    value={form.message}
-                    onChange={handleChange}
-                    required
-                    rows={5}
-                    placeholder="Tell me about your project or opportunity..."
-                    className="form-input resize-none"
-                  />
-                </div>
-
-                <button type="submit" className="btn-primary w-full justify-center">
-                  <span>🙏</span>
-                  <span>Send Message</span>
-                </button>
-              </form>
-            )}
+                  <button type="submit" className="btn-gold w-full py-3.5">
+                    <span>Send Message (संदेश भेजें)</span>
+                    <span>→</span>
+                  </button>
+                </form>
+              )}
+            </div>
           </div>
+
         </div>
       </div>
     </section>

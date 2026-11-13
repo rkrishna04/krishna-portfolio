@@ -2,274 +2,168 @@
 import MandalaDecor from "./MandalaDecor";
 import TemplateBorder from "./TemplateBorder";
 
-const stats = [
-  { value: "2+", label: "Years Experience" },
-  { value: "5+", label: "Projects Built" },
-  { value: "2", label: "Internships" },
-  { value: "FCIWD", label: "With Distinction" },
+const metrics = [
+  { value: "2+", label: "Years Experience", sub: "Enterprise & Academic" },
+  { value: "5+", label: "Production Projects", sub: "AI, Data & Full-Stack" },
+  { value: "2", label: "Railway Internships", sub: "Western Railway NOCC" },
+  { value: "FCIWD", label: "Distinction", sub: "Parul University MCA" },
+];
+
+const highlights = [
+  { icon: "🤖", title: "Artificial Intelligence", desc: "Machine learning, disease prediction & CUDA algorithms" },
+  { icon: "📊", title: "Data & BI Analytics", desc: "Power BI dashboards, DAX, KPI reporting & ETL pipelines" },
+  { icon: "⚡", title: "Database Architecture", desc: "PostgreSQL, MySQL, schema optimization & RBAC security" },
+  { icon: "🌐", title: "Full-Stack Systems", desc: "React, FastAPI, Python, Docker & enterprise portals" },
 ];
 
 export default function Hero() {
   return (
     <section
       id="namaste"
-      className="relative min-h-screen flex items-center overflow-hidden mandala-bg"
-      style={{ background: "var(--ivory)" }}
+      className="relative min-h-screen flex items-center justify-center pt-28 pb-20 overflow-hidden jali-grid"
     >
-      {/* Background decorations */}
-      <div className="absolute inset-0 jali-pattern opacity-30 pointer-events-none" />
+      {/* Ambient background glows */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[#D4AF37]/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-10 left-10 w-[400px] h-[400px] bg-[#E05638]/10 rounded-full blur-[120px] pointer-events-none" />
+      
+      {/* Background Rotating Mandala Watermark */}
       <MandalaDecor
-        size={500}
+        size={650}
         opacity={0.06}
-        className="absolute -top-20 -right-20 animate-spin-slow pointer-events-none"
-      />
-      <MandalaDecor
-        size={350}
-        opacity={0.05}
-        className="absolute -bottom-20 -left-20 pointer-events-none"
-        style={{ animationDirection: "reverse", animation: "spin-slow 20s linear infinite reverse" } as React.CSSProperties}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-spin-slow pointer-events-none"
       />
 
-      {/* Warli-style geometric top accent */}
-      <div
-        className="absolute top-0 left-0 right-0 h-1"
-        style={{
-          background: "linear-gradient(90deg, var(--indigo), var(--terracotta), var(--gold), var(--terracotta), var(--indigo))",
-        }}
-      />
-
-      <div className="relative max-w-7xl mx-auto px-6 py-32 w-full">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left: Text */}
-          <div>
-            {/* Greeting badge */}
-            <div
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-sm mb-8"
-              style={{
-                background: "rgba(196,82,42,0.08)",
-                border: "1px solid rgba(196,82,42,0.25)",
-              }}
-            >
-              <span className="text-lg">🙏</span>
-              <span
-                className="text-xs tracking-widest uppercase"
-                style={{ fontFamily: "'Cinzel', serif", color: "var(--terracotta)" }}
-              >
-                Namaste, I am
+      <div className="relative max-w-7xl mx-auto px-6 w-full">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          
+          {/* Left Column: Narrative & Intro (7 cols on lg) */}
+          <div className="lg:col-span-7 flex flex-col items-start text-left">
+            
+            {/* Cultural Namaste Greeting Badge */}
+            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#181523] border border-[#D4AF37]/30 shadow-[0_0_15px_rgba(212,175,55,0.15)] mb-6">
+              <span className="text-base">🙏</span>
+              <span className="font-cinzel text-xs tracking-widest uppercase font-semibold text-[#D4AF37]">
+                नमस्ते • Welcome to My Digital Atelier
               </span>
             </div>
 
-            {/* Name */}
-            <h1
-              className="mb-2 leading-none"
-              style={{
-                fontFamily: "'Cinzel Decorative', serif",
-                fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
-                color: "var(--deep-brown)",
-              }}
-            >
-              Krishna
+            {/* Main Heading */}
+            <h1 className="font-cinzel text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F8F6F0] leading-none mb-3">
+              KRISHNA
             </h1>
-            <h1
-              className="mb-6 leading-none animate-shimmer"
-              style={{
-                fontFamily: "'Cinzel Decorative', serif",
-                fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
-              }}
-            >
-              Rathwa
+            <h1 className="font-cinzel text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight gold-gradient-text leading-none mb-6">
+              RATHWA
             </h1>
 
-            {/* Role tag */}
-            <div className="flex flex-wrap gap-2 mb-6">
-              {["Data Analyst", "AI Developer", "Full Stack Dev", "BI Engineer"].map((role) => (
-                <span
-                  key={role}
-                  className="skill-tag"
-                  style={{
-                    background: "rgba(45,58,107,0.08)",
-                    border: "1px solid rgba(45,58,107,0.20)",
-                    color: "var(--indigo)",
-                  }}
-                >
-                  {role}
+            {/* Core Professional Identity */}
+            <div className="flex flex-wrap items-center gap-2 mb-6">
+              {["AI Developer", "Data Analyst", "Full-Stack Engineer", "BI Specialist"].map((tag, i) => (
+                <span key={i} className="heritage-pill text-xs py-1 px-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]" />
+                  {tag}
                 </span>
               ))}
             </div>
 
-            {/* Tagline */}
-            <TemplateBorder className="mb-6 max-w-xs" />
-
-            <p
-              className="text-base sm:text-lg leading-relaxed mb-8 max-w-lg"
-              style={{
-                fontFamily: "'Playfair Display', serif",
-                color: "var(--text-secondary)",
-                fontStyle: "italic",
-              }}
-            >
-              &ldquo;Just as a skilled kārigār shapes raw clay into art,
-              I craft data into decisions — blending analytical precision
-              with creative intelligence to build solutions that matter.&rdquo;
+            {/* Narrative / Philosophy */}
+            <p className="font-playfair italic text-lg sm:text-xl text-[#F5D77F]/90 leading-relaxed max-w-2xl mb-4">
+              &ldquo;Just as an Indian kārigār shapes raw bronze and silk into enduring art, 
+              I transform raw enterprise data and code into intelligent, purposeful digital architectures.&rdquo;
             </p>
 
-            {/* Summary prose */}
-            <p
-              className="text-sm leading-relaxed mb-10 max-w-lg"
-              style={{ color: "var(--text-muted)" }}
-            >
-              MCA (Artificial Intelligence) graduate from Parul University with enterprise
-              internship experience at Western Railway — specializing in SQL, Python, database
-              design, data analytics, and business intelligence.
+            <p className="text-sm sm:text-base text-[#C5BFB0] leading-relaxed max-w-2xl mb-8">
+              MCA (Artificial Intelligence) graduate from Parul University with enterprise engineering internship 
+              experience at Western Railway. Dedicated to high-scale database design, predictive analytics, 
+              Power BI dashboard systems, and robust backend infrastructure.
             </p>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-wrap gap-4">
-              <a href="#katha" className="btn-primary">
-                <span>View My Works</span>
+            {/* Action Buttons */}
+            <div className="flex flex-wrap gap-4 w-full sm:w-auto mb-12">
+              <a href="#katha" className="btn-gold w-full sm:w-auto">
+                <span>View Works (કથા)</span>
                 <span>→</span>
               </a>
-              <a href="#samvad" className="btn-secondary">
-                <span>Let&apos;s Talk</span>
+              <a href="#samvad" className="btn-outline-gold w-full sm:w-auto">
+                <span>Let&apos;s Connect (સંવાદ)</span>
               </a>
               <a
                 href="https://www.linkedin.com/in/rathwa-krishna"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-secondary"
+                className="btn-outline-gold w-full sm:w-auto"
               >
-                <span>LinkedIn</span>
+                <span>LinkedIn Profile ↗</span>
               </a>
             </div>
 
-            {/* Stats */}
-            <div
-              className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-12 pt-8"
-              style={{ borderTop: "1px solid rgba(212,160,23,0.25)" }}
-            >
-              {stats.map(({ value, label }) => (
-                <div key={label} className="text-center">
-                  <div
-                    className="text-xl font-bold"
-                    style={{
-                      fontFamily: "'Cinzel', serif",
-                      color: "var(--terracotta)",
-                    }}
-                  >
+            {/* Metrics Bar */}
+            <div className="w-full pt-8 border-t border-[#D4AF37]/20 grid grid-cols-2 sm:grid-cols-4 gap-6">
+              {metrics.map(({ value, label, sub }) => (
+                <div key={label} className="flex flex-col">
+                  <span className="font-cinzel text-2xl sm:text-3xl font-bold text-[#D4AF37]">
                     {value}
-                  </div>
-                  <div
-                    className="text-xs mt-1"
-                    style={{ color: "var(--text-muted)" }}
-                  >
+                  </span>
+                  <span className="text-xs font-semibold text-[#F8F6F0] mt-0.5">
                     {label}
-                  </div>
+                  </span>
+                  <span className="text-[11px] text-[#8E8679]">
+                    {sub}
+                  </span>
                 </div>
               ))}
             </div>
+
           </div>
 
-          {/* Right: Portrait + Mandala frame */}
-          <div className="hidden lg:flex justify-center items-center relative">
-            {/* Outer orbit ring */}
-            <div
-              className="absolute w-96 h-96 rounded-full animate-spin-slow pointer-events-none"
-              style={{
-                border: "1px dashed rgba(212,160,23,0.30)",
-              }}
-            />
-            {/* Middle ring */}
-            <div
-              className="absolute w-80 h-80 rounded-full animate-pulse-gold pointer-events-none"
-              style={{
-                border: "2px solid rgba(196,82,42,0.15)",
-              }}
-            />
-
-            {/* Avatar container */}
-            <div
-              className="relative w-72 h-72 flex items-center justify-center rounded-full"
-              style={{
-                background: "linear-gradient(135deg, rgba(196,82,42,0.12), rgba(212,160,23,0.12), rgba(45,58,107,0.10))",
-                border: "3px solid rgba(212,160,23,0.40)",
-                boxShadow: "0 20px 60px rgba(44,24,16,0.20), inset 0 1px 0 rgba(255,255,255,0.60)",
-              }}
-            >
-              {/* Initials avatar */}
-              <div className="text-center">
-                <div
-                  className="text-7xl font-bold mb-2"
-                  style={{
-                    fontFamily: "'Cinzel Decorative', serif",
-                    background: "linear-gradient(135deg, #C4522A, #D4A017)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                  }}
-                >
+          {/* Right Column: Visual Yantra & Feature Cards (5 cols on lg) */}
+          <div className="lg:col-span-5 flex flex-col items-center justify-center relative">
+            
+            {/* Center Royal Seal / Yantra */}
+            <div className="relative w-72 h-72 sm:w-80 sm:h-80 flex items-center justify-center mb-8">
+              {/* Outer Decorative Rotating Ring */}
+              <div className="absolute inset-0 rounded-full border border-dashed border-[#D4AF37]/40 animate-spin-slow" />
+              
+              {/* Middle Pulsing Ring */}
+              <div className="absolute inset-4 rounded-full border-2 border-[#E05638]/30 animate-pulse-glow" />
+              
+              {/* Central Glowing Seal */}
+              <div className="relative w-56 h-56 rounded-full bg-gradient-to-br from-[#181523] via-[#100E17] to-[#08070A] border-2 border-[#D4AF37]/60 flex flex-col items-center justify-center p-6 text-center shadow-[0_0_50px_rgba(212,175,55,0.25)]">
+                <MandalaDecor size={180} opacity={0.35} className="absolute inset-0 m-auto pointer-events-none" />
+                <span className="font-cinzel-decorative text-4xl sm:text-5xl font-bold gold-gradient-text">
                   KR
-                </div>
-                <div
-                  className="text-xs tracking-widest uppercase"
-                  style={{ fontFamily: "'Cinzel', serif", color: "var(--text-muted)" }}
-                >
-                  Data • AI • Dev
-                </div>
+                </span>
+                <span className="font-cinzel text-[11px] font-semibold text-[#D4AF37] tracking-widest uppercase mt-2">
+                  कारीगरी • ARTISAN
+                </span>
+                <span className="text-[10px] text-[#8E8679] tracking-wider mt-1">
+                  Western Railway • Parul Univ
+                </span>
               </div>
+            </div>
 
-              {/* Corner ornaments */}
-              {["-top-3 -left-3", "-top-3 -right-3", "-bottom-3 -left-3", "-bottom-3 -right-3"].map((pos, i) => (
+            {/* Quick Capability Highlights Grid */}
+            <div className="w-full grid sm:grid-cols-2 gap-3.5">
+              {highlights.map((h, i) => (
                 <div
                   key={i}
-                  className={`absolute ${pos} w-6 h-6`}
-                  style={{
-                    background: "var(--gold)",
-                    clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
-                  }}
-                />
+                  className="heritage-card p-4 flex flex-col gap-1.5"
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="text-xl">{h.icon}</span>
+                    <h2 className="font-cinzel text-xs font-bold text-[#F8F6F0]">
+                      {h.title}
+                    </h2>
+                  </div>
+                  <p className="text-[11px] text-[#C5BFB0] leading-relaxed">
+                    {h.desc}
+                  </p>
+                </div>
               ))}
             </div>
 
-            {/* Floating skill chips */}
-            {[
-              { label: "Python", pos: "-top-4 left-8", color: "#2D5A27" },
-              { label: "Power BI", pos: "top-16 -right-8", color: "#C4522A" },
-              { label: "SQL", pos: "bottom-16 -left-8", color: "#2D3A6B" },
-              { label: "FastAPI", pos: "-bottom-4 right-12", color: "#B87333" },
-            ].map(({ label, pos, color }) => (
-              <div
-                key={label}
-                className={`absolute ${pos} px-3 py-1.5 rounded-sm text-xs font-semibold animate-float`}
-                style={{
-                  background: "var(--ivory)",
-                  border: `1px solid ${color}40`,
-                  color,
-                  fontFamily: "'Cinzel', serif",
-                  boxShadow: "0 4px 16px rgba(44,24,16,0.12)",
-                  letterSpacing: "0.1em",
-                  animationDelay: `${Math.random() * 2}s`,
-                }}
-              >
-                {label}
-              </div>
-            ))}
           </div>
-        </div>
-      </div>
 
-      {/* Bottom scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-        <span
-          className="text-xs tracking-widest uppercase"
-          style={{ fontFamily: "'Cinzel', serif", color: "var(--text-muted)" }}
-        >
-          Scroll
-        </span>
-        <div
-          className="w-0.5 h-8 mx-auto"
-          style={{
-            background: "linear-gradient(180deg, var(--gold), transparent)",
-          }}
-        />
+        </div>
       </div>
     </section>
   );

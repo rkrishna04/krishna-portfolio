@@ -1,4 +1,9 @@
-export default function MandalaDecor({ size = 300, opacity = 0.07, className = "", style }: {
+export default function MandalaDecor({
+  size = 400,
+  opacity = 0.15,
+  className = "",
+  style,
+}: {
   size?: number;
   opacity?: number;
   className?: string;
@@ -8,100 +13,82 @@ export default function MandalaDecor({ size = 300, opacity = 0.07, className = "
     <svg
       width={size}
       height={size}
-      viewBox="0 0 300 300"
+      viewBox="0 0 400 400"
       className={className}
       style={{ opacity, ...style }}
       aria-hidden="true"
     >
-      {/* Outer ring */}
-      <circle cx="150" cy="150" r="140" fill="none" stroke="#D4A017" strokeWidth="1" strokeDasharray="4 6" />
-      <circle cx="150" cy="150" r="128" fill="none" stroke="#C4522A" strokeWidth="0.5" />
+      <defs>
+        <radialGradient id="mandalaGrad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#D4AF37" stopOpacity="0.8" />
+          <stop offset="40%" stopColor="#E05638" stopOpacity="0.4" />
+          <stop offset="100%" stopColor="#D4AF37" stopOpacity="0" />
+        </radialGradient>
+      </defs>
 
-      {/* Petal ring 1 */}
+      {/* Central Glow */}
+      <circle cx="200" cy="200" r="160" fill="url(#mandalaGrad)" opacity="0.3" />
+
+      {/* Outer Rings */}
+      <circle cx="200" cy="200" r="185" fill="none" stroke="#D4AF37" strokeWidth="1" strokeDasharray="3 6" />
+      <circle cx="200" cy="200" r="170" fill="none" stroke="#D4AF37" strokeWidth="0.75" />
+      <circle cx="200" cy="200" r="150" fill="none" stroke="#E05638" strokeWidth="0.5" strokeDasharray="6 6" />
+
+      {/* 16 Radial Petals */}
       {Array.from({ length: 16 }).map((_, i) => {
-        const angle = (i * 360) / 16;
-        const rad = (angle * Math.PI) / 180;
-        const x = 150 + 110 * Math.cos(rad);
-        const y = 150 + 110 * Math.sin(rad);
+        const deg = (i * 360) / 16;
+        const rad = (deg * Math.PI) / 180;
+        const x = 200 + 130 * Math.cos(rad);
+        const y = 200 + 130 * Math.sin(rad);
         return (
-          <ellipse
-            key={i}
-            cx={x}
-            cy={y}
-            rx="8"
-            ry="4"
-            fill="#D4A017"
-            transform={`rotate(${angle + 90}, ${x}, ${y})`}
-          />
+          <g key={`petal-${i}`} transform={`rotate(${deg}, ${x}, ${y})`}>
+            <path
+              d={`M ${x} ${y - 12} C ${x + 8} ${y} ${x + 8} ${y + 12} ${x} ${y + 24} C ${x - 8} ${y + 12} ${x - 8} ${y} ${x} ${y - 12}`}
+              fill="none"
+              stroke="#D4AF37"
+              strokeWidth="0.8"
+            />
+            <circle cx={x} cy={y + 6} r="2" fill="#D4AF37" />
+          </g>
         );
       })}
 
-      {/* Petal ring 2 */}
-      {Array.from({ length: 12 }).map((_, i) => {
-        const angle = (i * 360) / 12 + 15;
-        const rad = (angle * Math.PI) / 180;
-        const x = 150 + 85 * Math.cos(rad);
-        const y = 150 + 85 * Math.sin(rad);
-        return (
-          <ellipse
-            key={i}
-            cx={x}
-            cy={y}
-            rx="10"
-            ry="5"
-            fill="none"
-            stroke="#C4522A"
-            strokeWidth="1"
-            transform={`rotate(${angle + 90}, ${x}, ${y})`}
-          />
-        );
-      })}
-
-      {/* Inner lotus */}
+      {/* 8 Lotus Inner Leaves */}
       {Array.from({ length: 8 }).map((_, i) => {
-        const angle = (i * 360) / 8;
-        const rad = (angle * Math.PI) / 180;
-        const x1 = 150 + 55 * Math.cos(rad);
-        const y1 = 150 + 55 * Math.sin(rad);
-        const x2 = 150 + 35 * Math.cos(rad + 0.4);
-        const y2 = 150 + 35 * Math.sin(rad + 0.4);
-        const x3 = 150 + 35 * Math.cos(rad - 0.4);
-        const y3 = 150 + 35 * Math.sin(rad - 0.4);
+        const deg = (i * 360) / 8 + 22.5;
+        const rad = (deg * Math.PI) / 180;
+        const x = 200 + 75 * Math.cos(rad);
+        const y = 200 + 75 * Math.sin(rad);
         return (
-          <path
-            key={i}
-            d={`M 150 150 Q ${x2} ${y2} ${x1} ${y1} Q ${x3} ${y3} 150 150`}
-            fill="rgba(212,160,23,0.3)"
-            stroke="#D4A017"
+          <circle
+            key={`inner-${i}`}
+            cx={x}
+            cy={y}
+            r="4"
+            fill="#E05638"
+            stroke="#D4AF37"
             strokeWidth="0.5"
           />
         );
       })}
 
-      {/* Middle circles */}
-      <circle cx="150" cy="150" r="30" fill="none" stroke="#D4A017" strokeWidth="1" />
-      <circle cx="150" cy="150" r="20" fill="none" stroke="#C4522A" strokeWidth="0.5" strokeDasharray="3 4" />
-      <circle cx="150" cy="150" r="10" fill="rgba(212,160,23,0.2)" stroke="#D4A017" strokeWidth="1" />
-      <circle cx="150" cy="150" r="4" fill="#D4A017" />
+      {/* Center Sacred Geometry Yantra */}
+      <polygon
+        points="200,140 252,230 148,230"
+        fill="none"
+        stroke="#D4AF37"
+        strokeWidth="1.2"
+      />
+      <polygon
+        points="200,260 252,170 148,170"
+        fill="none"
+        stroke="#D4AF37"
+        strokeWidth="1.2"
+      />
 
-      {/* Diamond marks */}
-      {Array.from({ length: 8 }).map((_, i) => {
-        const angle = (i * 360) / 8 + 22.5;
-        const rad = (angle * Math.PI) / 180;
-        const x = 150 + 65 * Math.cos(rad);
-        const y = 150 + 65 * Math.sin(rad);
-        return (
-          <rect
-            key={i}
-            x={x - 3}
-            y={y - 3}
-            width="6"
-            height="6"
-            fill="#C4522A"
-            transform={`rotate(45, ${x}, ${y})`}
-          />
-        );
-      })}
+      <circle cx="200" cy="200" r="30" fill="none" stroke="#E05638" strokeWidth="1" />
+      <circle cx="200" cy="200" r="16" fill="none" stroke="#D4AF37" strokeWidth="0.8" strokeDasharray="3 3" />
+      <circle cx="200" cy="200" r="6" fill="#D4AF37" />
     </svg>
   );
 }

@@ -5,163 +5,113 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer
-      className="relative py-12"
-      style={{ background: "var(--deep-brown)" }}
-    >
-      {/* Top ornamental border */}
-      <div
-        className="absolute top-0 left-0 right-0 h-0.5"
-        style={{
-          background:
-            "linear-gradient(90deg, transparent, var(--gold), var(--terracotta), var(--gold), transparent)",
-        }}
-      />
-
+    <footer className="relative bg-[#060508] border-t border-[#D4AF37]/20 pt-16 pb-12 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
-        {/* Main footer grid */}
-        <div className="grid sm:grid-cols-3 gap-10 mb-10">
-          {/* Brand */}
-          <div>
-            <div className="flex items-center gap-3 mb-4">
-              <div
-                className="w-9 h-9 flex items-center justify-center rounded-sm"
-                style={{
-                  background: "linear-gradient(135deg, #C4522A, #D4A017)",
-                  clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
-                }}
-              >
-                <span
-                  className="text-xs font-bold"
-                  style={{ fontFamily: "'Cinzel', serif", color: "#FAF6EE" }}
-                >
+        
+        {/* Main Footer Grid */}
+        <div className="grid md:grid-cols-12 gap-10 pb-12">
+          
+          {/* Brand & Monogram (5 cols) */}
+          <div className="md:col-span-5 flex flex-col items-start">
+            <div className="flex items-center gap-3.5 mb-4">
+              <div className="w-10 h-10 flex items-center justify-center rounded-lg bg-gradient-to-br from-[#D4AF37]/20 to-[#E05638]/20 border border-[#D4AF37]/40">
+                <span className="font-cinzel text-sm font-bold gold-gradient-text tracking-widest">
                   KR
                 </span>
               </div>
-              <span
-                className="text-sm tracking-widest uppercase"
-                style={{ fontFamily: "'Cinzel', serif", color: "#FAF6EE" }}
-              >
-                Krishna Rathwa
+              <span className="font-cinzel text-base font-bold tracking-widest text-[#F8F6F0]">
+                KRISHNA RATHWA
               </span>
             </div>
-            <p
-              className="text-xs leading-relaxed"
-              style={{
-                fontFamily: "'Playfair Display', serif",
-                color: "rgba(250,246,238,0.55)",
-                fontStyle: "italic",
-              }}
-            >
-              Data Analyst · AI Developer · Full Stack Engineer
+            
+            <p className="font-playfair italic text-sm text-[#C5BFB0] max-w-sm leading-relaxed mb-4">
+              Engineering reliable data pipelines, intelligent algorithms, and enterprise systems — infused with the soul of timeless craftsmanship.
             </p>
-            <p
-              className="text-xs mt-2"
-              style={{ color: "rgba(250,246,238,0.40)" }}
-            >
-              Vadodara, India
-            </p>
-          </div>
 
-          {/* Nav links */}
-          <div>
-            <h4
-              className="text-xs tracking-widest uppercase mb-4"
-              style={{ fontFamily: "'Cinzel', serif", color: "var(--gold)" }}
-            >
-              Navigate
-            </h4>
-            <nav className="space-y-2">
-              {[
-                ["Namaste — About", "#namaste"],
-                ["Kala — Skills", "#kala"],
-                ["Katha — Projects", "#katha"],
-                ["Karigari — Experience", "#karigari"],
-                ["Samvad — Contact", "#samvad"],
-              ].map(([label, href]) => (
-                <a
-                  key={href}
-                  href={href}
-                  className="block text-xs transition-colors duration-200"
-                  style={{ color: "rgba(250,246,238,0.55)" }}
-                  onMouseEnter={(e) => ((e.target as HTMLElement).style.color = "var(--gold)")}
-                  onMouseLeave={(e) => ((e.target as HTMLElement).style.color = "rgba(250,246,238,0.55)")}
-                >
-                  {label}
-                </a>
-              ))}
-            </nav>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h4
-              className="text-xs tracking-widest uppercase mb-4"
-              style={{ fontFamily: "'Cinzel', serif", color: "var(--gold)" }}
-            >
-              Connect
-            </h4>
-            <div className="space-y-2">
-              <a
-                href="mailto:krishnarathwa04@gmail.com"
-                className="flex items-center gap-2 text-xs transition-colors duration-200"
-                style={{ color: "rgba(250,246,238,0.55)" }}
-              >
-                <span>✉️</span> krishnarathwa04@gmail.com
-              </a>
-              <a
-                href="tel:+919106170271"
-                className="flex items-center gap-2 text-xs"
-                style={{ color: "rgba(250,246,238,0.55)" }}
-              >
-                <span>📞</span> +91 9106170271
-              </a>
-              <a
-                href="https://www.linkedin.com/in/rathwa-krishna"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-xs"
-                style={{ color: "rgba(250,246,238,0.55)" }}
-              >
-                <span>💼</span> linkedin.com/in/rathwa-krishna
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <TemplateBorder className="mb-8 opacity-30" />
-
-        {/* Bottom bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p
-            className="text-xs"
-            style={{
-              fontFamily: "'Cinzel', serif",
-              color: "rgba(250,246,238,0.35)",
-              letterSpacing: "0.1em",
-            }}
-          >
-            © {currentYear} Krishna Rathwa. Crafted with ❤️ & karigari.
-          </p>
-          <div className="flex items-center gap-2">
-            <span className="text-xs" style={{ color: "rgba(250,246,238,0.25)" }}>
-              Built with
+            <span className="text-xs text-[#8E8679]">
+              Based in Vadodara, Gujarat, India • Available Worldwide
             </span>
-            {["Next.js", "Tailwind", "TypeScript"].map((tech) => (
-              <span
-                key={tech}
-                className="text-xs px-2 py-0.5 rounded-sm"
-                style={{
-                  background: "rgba(212,160,23,0.10)",
-                  color: "var(--gold)",
-                  border: "1px solid rgba(212,160,23,0.20)",
-                }}
-              >
-                {tech}
-              </span>
-            ))}
+          </div>
+
+          {/* Quick Links (3 cols) */}
+          <div className="md:col-span-3">
+            <h4 className="font-cinzel text-xs font-bold text-[#D4AF37] uppercase tracking-widest mb-4">
+              Sections
+            </h4>
+            <ul className="space-y-2.5 text-xs text-[#C5BFB0]">
+              {[
+                { name: "नमस्ते • Namaste (About)", href: "#namaste" },
+                { name: "कला • Kala (Technical Arsenal)", href: "#kala" },
+                { name: "कथा • Katha (Featured Works)", href: "#katha" },
+                { name: "कारीगरी • Karigari (Experience)", href: "#karigari" },
+                { name: "संवाद • Samvad (Contact)", href: "#samvad" },
+              ].map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    className="hover:text-[#D4AF37] transition-colors"
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Connect & Socials (4 cols) */}
+          <div className="md:col-span-4">
+            <h4 className="font-cinzel text-xs font-bold text-[#D4AF37] uppercase tracking-widest mb-4">
+              Direct Channels
+            </h4>
+            <div className="space-y-2 text-xs text-[#C5BFB0]">
+              <p>
+                <a
+                  href="mailto:krishnarathwa04@gmail.com"
+                  className="hover:text-[#D4AF37] transition-colors flex items-center gap-2"
+                >
+                  <span>✉️</span>
+                  <span>krishnarathwa04@gmail.com</span>
+                </a>
+              </p>
+              <p>
+                <a
+                  href="tel:+919106170271"
+                  className="hover:text-[#D4AF37] transition-colors flex items-center gap-2"
+                >
+                  <span>📞</span>
+                  <span>+91 9106170271</span>
+                </a>
+              </p>
+              <p>
+                <a
+                  href="https://www.linkedin.com/in/rathwa-krishna"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#D4AF37] transition-colors flex items-center gap-2"
+                >
+                  <span>💼</span>
+                  <span>linkedin.com/in/rathwa-krishna</span>
+                </a>
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <TemplateBorder className="opacity-40 mb-8" />
+
+        {/* Bottom Bar */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#8E8679]">
+          <p>
+            © {currentYear} Krishna Rathwa. Built with Next.js, TypeScript & Tailwind CSS.
+          </p>
+          <div className="flex items-center gap-3">
+            <span className="font-cinzel text-[#D4AF37]">
+              सत्यमेવ જયતે • Excellence in Engineering
+            </span>
           </div>
         </div>
+
       </div>
     </footer>
   );

@@ -9,15 +9,17 @@ interface SectionHeaderProps {
 
 export default function SectionHeader({ label, title, subtitle, center = true }: SectionHeaderProps) {
   return (
-    <div className={`mb-14 ${center ? "text-center" : ""}`}>
-      <p className="section-label mb-3">❈ {label} ❈</p>
-      <h2 className="section-title text-3xl sm:text-4xl mb-4">{title}</h2>
-      <TemplateBorder className={center ? "mx-auto max-w-xs" : "max-w-xs"} />
+    <div className={`mb-14 ${center ? "text-center max-w-3xl mx-auto" : "max-w-3xl"}`}>
+      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/30 text-[#D4AF37] text-xs font-semibold tracking-widest uppercase mb-3">
+        <span>🪔</span>
+        <span>{label}</span>
+      </div>
+      <h2 className="font-cinzel text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#F8F6F0] mb-3">
+        {title}
+      </h2>
+      <TemplateBorder className="max-w-xs mx-auto" />
       {subtitle && (
-        <p
-          className={`mt-5 text-base leading-relaxed max-w-2xl ${center ? "mx-auto" : ""}`}
-          style={{ color: "var(--text-secondary)", fontFamily: "'Playfair Display', serif" }}
-        >
+        <p className="mt-4 text-sm sm:text-base leading-relaxed text-[#C5BFB0] font-light">
           {subtitle}
         </p>
       )}
